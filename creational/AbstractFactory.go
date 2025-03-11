@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package creational
 
 type IFactory interface {
 	MakeShoe() any
@@ -101,13 +99,4 @@ func (s *Tshirt) GetLogo() string {
 }
 func (s *Tshirt) GetSize() int {
 	return s.Size
-}
-
-func main() {
-	addidas := GetInstance("addidas")
-	nike := GetInstance("nike")
-
-	fmt.Println("addidas : ", addidas.MakeShirt())
-	fmt.Println("nike : ", nike.MakeShoe())
-
 }

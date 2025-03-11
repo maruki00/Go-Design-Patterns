@@ -1,4 +1,4 @@
-package main
+package creational
 
 import (
 	"fmt"
@@ -55,14 +55,4 @@ func (obj *Query) Get() {
 	query += " Where " + obj._where
 	query += fmt.Sprintf(" Limit %d Offset %d ", obj._limit, obj._offset)
 	fmt.Println(query)
-}
-
-func main() {
-
-	q := &Query{}
-	q.Table("tab1").Select([]string{"id", "name"}).Where("id = 1").Limit(10).Offset(10).Get()
-}
-
-func helloword() string {
-	return "hello_world"
 }

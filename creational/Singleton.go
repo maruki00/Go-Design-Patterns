@@ -1,31 +1,29 @@
-package main
+package creational
 
-import "fmt"
-
-type Object struct {
+type singleTonObject struct {
 	id int
 }
 
-var singleTon *Object
+var singleTon *singleTonObject
 
-func GetObject() *Object {
+func GetObject() *singleTonObject {
 	if singleTon == nil {
-		singleTon = &Object{}
+		singleTon = &singleTonObject{}
 	}
 	return singleTon
 }
 
-func (o *Object) GetId() int {
+func (o *singleTonObject) GetId() int {
 	return o.id
 }
-func (o *Object) SetId(id int) {
+func (o *singleTonObject) SetId(id int) {
 	o.id = id
 }
 
-func main() {
-	obj := GetObject()
-	obj.SetId(10)
-	obj = GetObject()
-	fmt.Println(obj.GetId())
+// func main() {
+// 	obj := GetObject()
+// 	obj.SetId(10)
+// 	obj = GetObject()
+// 	fmt.Println(obj.GetId())
 
-}
+// }

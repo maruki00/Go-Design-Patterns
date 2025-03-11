@@ -1,8 +1,7 @@
-package main
+package creational
 
 import (
 	"errors"
-	"fmt"
 )
 
 var lastId int = 0
@@ -28,15 +27,15 @@ func ObjectFactory(Quatity int, Address string) (*Object, error) {
 	}, nil
 }
 
-func main() {
-	obj, err := ObjectFactory(10, "address 1")
-	if err != nil {
-		panic(err)
-	}
-	obj1, err := ObjectFactory(10, "address 1")
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("result %#v, \n", obj)
-	fmt.Printf("result %#v, \n", obj1)
-}
+// func main() {
+// 	obj, err := ObjectFactory(10, "address 1")
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// 	obj1, err := ObjectFactory(10, "address 1")
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// 	fmt.Printf("result %#v, \n", obj)
+// 	fmt.Printf("result %#v, \n", obj1)
+// }
