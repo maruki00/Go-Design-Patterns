@@ -19,11 +19,3 @@ func (o *singleTonObject) GetId() int {
 func (o *singleTonObject) SetId(id int) {
 	o.id = id
 }
-
-// func main() {
-// 	obj := GetObject()
-// 	obj.SetId(10)
-// 	obj = GetObject()
-// 	fmt.Println(obj.GetId())
-
-// }
