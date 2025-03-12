@@ -36,5 +36,5 @@ func NewXMLAdapter(d Data) *JsonAdapter {
 }
 
 func (x *XMLAdapter) GetData() string {
-	return fmt.Sprintf(`{"name": %s, "age": %d}`, x.d.Name, x.d.Age)
+	return fmt.Sprintf(`<data><name>%s</name><age>%d</age></data>`, x.d.Name, x.d.Age)
 }
