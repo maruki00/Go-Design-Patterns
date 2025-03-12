@@ -22,15 +22,15 @@ func NewJsonAdapter(d Data) *JsonAdapter {
 }
 
 func (j *JsonAdapter) GetData() string {
-	return fmt.Sprintf(`{"name": %s, "age": %d}`, j.d.Name, j.d.Age)
+	return fmt.Sprintf(`{"name": "%s", "age": %d}`, j.d.Name, j.d.Age)
 }
 
 type XMLAdapter struct {
 	d Data
 }
 
-func NewXMLAdapter(d Data) *JsonAdapter {
-	return &JsonAdapter{
+func NewXMLAdapter(d Data) *XMLAdapter {
+	return &XMLAdapter{
 		d: d,
 	}
 }
