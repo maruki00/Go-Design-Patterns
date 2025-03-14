@@ -38,22 +38,7 @@ func (repo *PostgresRepository) Insert(name string) bool {
 	repo.Items[name] = true
 	return true
 }
-
 func (repo *PostgresRepository) Delete(name string) bool {
 	delete(repo.Items, name)
 	return true
-}
-
-type Service struct {
-	repo IRepository
-}
-
-func NewService(repo IRepository) *Service {
-	return &Service{
-		repo: repo,
-	}
-}
-
-func (s *Service) Create(name string) bool {
-	return s.repo.Insert(name)
 }
