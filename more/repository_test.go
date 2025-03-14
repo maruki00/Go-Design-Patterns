@@ -1,64 +1,59 @@
 package more_test
 
-type IRepository interface {
-	Insert(string) bool
-	Delete(string) bool
-}
+import (
+	"_/home/user/dev/Projects/Go/public/design-patterns/more"
+	"testing"
+)
 
-type MysqlRepository struct {
-	items map[string]bool
-}
+func TestMysqlRepository(t *testing.T) {
+	repo := more.NewMysqlRepository()
 
-func NewMysqlRepository() *MysqlRepository {
-	return &MysqlRepository{
-		items: make(map[string]bool, 0),
+	// Test Insert
+	if !repo.Insert("item1") {
+		t.Errorf("MysqlRepository Insert failed")
+	}
+	if !repo.items["item1"] {
+		t.Errorf("MysqlRepository Insert did not store the item correctly")
+	}
+
+	// Test Delete
+	if !repo.Delete("item1") {
+		t.Errorf("MysqlRepository Delete failed")
+	}
+	if repo.items["item1"] {
+		t.Errorf("MysqlRepository Delete did not remove the item correctly")
 	}
 }
 
-type PostgresRepository struct {
-	items map[string]bool
-}
+func TestPostgresRepository(t *testing.T) {
+	repo := NewPostgresRepository()
 
-func NewPostgresRepository() *PostgresRepository {
-	return &PostgresRepository{
-		items: make(map[string]bool, 0),
+	// Test Insert
+	if !repo.Insert("item1") {
+		t.Errorf("PostgresRepository Insert failed")
+	}
+	if !repo.items["item1"] {
+		t.Errorf("PostgresRepository Insert did not store the item correctly")
+	}
+
+	// Test Delete
+	if !repo.Delete("item1") {
+		t.Errorf("PostgresRepository Delete failed")
+	}
+	if repo.items["item1"] {
+		t.Errorf("PostgresRepository Delete did not remove the item correctly")
 	}
 }
 
-func (repo *MysqlRepository) Insert(name string) bool {
-	repo.items[name] = true
-	return true
-}
-func (repo *MysqlRepository) Delete(name string) bool {
-	delete(repo.items, name)
-	return true
-}
+func TestService(t *testing.T) {
+	repo := NewMysqlRepository()
+	service := NewService(repo)
 
-func (repo *PostgresRepository) Insert(name string) bool {
-	repo.items[name] = true
-	return true
-}
-
-func (repo *PostgresRepository) Delete(name string) bool {
-	delete(repo.items, name)
-	return true
-}
-
-type Service struct {
-	repo IRepository
-}
-
-func NewService(repo IRepository) *Service {
-	return &Service{
-		repo: repo,
+	// Test Create via Service
+	if !service.Create("item1") {
+		t.Errorf("Service Create failed")
 	}
-}
-
-func (s *Service) Create(name string) bool {
-	return s.repo.Insert(name)
-}
-
-func main() {
-	service := NewService(NewMysqlRepository())
-	service.Create("hello world")
+	if !repo.items["item1"] {
+		t.Errorf("Service Create did not store the item correctly in the repository")
+	}
 }

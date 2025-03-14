@@ -6,41 +6,41 @@ type IRepository interface {
 }
 
 type MysqlRepository struct {
-	items map[string]bool
+	Items map[string]bool
 }
 
 func NewMysqlRepository() *MysqlRepository {
 	return &MysqlRepository{
-		items: make(map[string]bool, 0),
+		Items: make(map[string]bool, 0),
 	}
 }
 
 type PostgresRepository struct {
-	items map[string]bool
+	Items map[string]bool
 }
 
 func NewPostgresRepository() *PostgresRepository {
 	return &PostgresRepository{
-		items: make(map[string]bool, 0),
+		Items: make(map[string]bool, 0),
 	}
 }
 
 func (repo *MysqlRepository) Insert(name string) bool {
-	repo.items[name] = true
+	repo.Items[name] = true
 	return true
 }
 func (repo *MysqlRepository) Delete(name string) bool {
-	delete(repo.items, name)
+	delete(repo.Items, name)
 	return true
 }
 
 func (repo *PostgresRepository) Insert(name string) bool {
-	repo.items[name] = true
+	repo.Items[name] = true
 	return true
 }
 
 func (repo *PostgresRepository) Delete(name string) bool {
-	delete(repo.items, name)
+	delete(repo.Items, name)
 	return true
 }
 
