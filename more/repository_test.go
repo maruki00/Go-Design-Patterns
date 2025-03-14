@@ -1,4 +1,4 @@
-package more
+package more_test
 
 type IRepository interface {
 	Insert(string) bool
@@ -56,4 +56,9 @@ func NewService(repo IRepository) *Service {
 
 func (s *Service) Create(name string) bool {
 	return s.repo.Insert(name)
+}
+
+func main() {
+	service := NewService(NewMysqlRepository())
+	service.Create("hello world")
 }
